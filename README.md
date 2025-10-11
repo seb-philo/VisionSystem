@@ -16,7 +16,11 @@ The concept behind stereoscopic vision, required two identical cameras, which ar
 
 <img width="630" height="247" alt="image" src="https://github.com/user-attachments/assets/4e45f7ec-f3d7-4b31-8e17-7ae17187fa4e" />
 
-I used this idea to develop this process in python, with the help of the OpenCV library, to limited effect https://github.com/seb-philo/VisionSystem/blob/main/CreateDepthMap.py. Firstly, the cameras require calibration to remove distortion using grid corner detection, and rectification to ensure the imaging is epipolar (vertically constrained), some samples I practiced with are below: 
+I used this idea to develop this process in python, with the help of the OpenCV library, to limited effect.
+
+[`create-depth-map.py`](https://github.com/seb-philo/vision-system/blob/main/create-depth-map.py)
+
+Firstly, the cameras require calibration to remove distortion using grid corner detection, and rectification to ensure the imaging is epipolar (vertically constrained), some samples I practiced with are below: 
 
 
 <img width="612" height="178" alt="image" src="https://github.com/user-attachments/assets/5200687a-8915-4f50-a3fa-6ffa16a874a2" />
