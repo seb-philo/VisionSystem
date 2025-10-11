@@ -16,23 +16,38 @@ The concept behind stereoscopic vision, required two identical cameras, which ar
 
 <img width="630" height="247" alt="image" src="https://github.com/user-attachments/assets/4e45f7ec-f3d7-4b31-8e17-7ae17187fa4e" />
 
-I used this idea to develop this process in python, with the help of the OpenCV library, to limited effect.
+I used this idea to develop this process in python, with the help of the OpenCV library.
+
+Firstly, the cameras require calibration to remove distortion using a grid, where the corners are detected and the lines between them, straightened. This process first involved determining the data for the given cameras:
+
+[`learn-distortion.py`](https://github.com/seb-philo/vision-system/blob/main/learn-distortion.py), 
+
+and then applying that to all images taken thereafter:
+
+[`undistort.py`](https://github.com/seb-philo/vision-system/blob/main/undistort.py).
+
+Following this, the camera pair need rectification to ensure the imaging has epipolar geometry, this method searches all single pixel lines across the width of the images to find identical points.
+
+[`epipolar-geometry.py`](https://github.com/seb-philo/vision-system/blob/main/epipolar-geometry.py)
+
+Once calibrated and rectified, the images are processed for their disparity, and displayed as a depth map.
 
 [`create-depth-map.py`](https://github.com/seb-philo/vision-system/blob/main/create-depth-map.py)
 
-Firstly, the cameras require calibration to remove distortion using grid corner detection, and rectification to ensure the imaging is epipolar (vertically constrained), some samples I practiced with are below: 
-
+Some samples I practiced with are below: 
 
 <img width="612" height="178" alt="image" src="https://github.com/user-attachments/assets/5200687a-8915-4f50-a3fa-6ffa16a874a2" />
 
-
 <img width="532" height="220" alt="image" src="https://github.com/user-attachments/assets/0be5d57e-db0a-4575-9758-3d0432b2783f" />
-
-
-Once complete, the corrected images can then be matches to determine disparity: 
-
 
 <img width="418" height="316" alt="image" src="https://github.com/user-attachments/assets/7fd06114-f707-46be-95f4-8ce4b0d756bb" />
 
-
 In practice, however, the cameras I had utilised featured too poor of manufacturing tolerances to be corrected, meaning poor disparity detection.
+
+Video is streamed for operation, to the base, at 1fps to limit the amount of data transfer.
+
+[`streaming.py`](https://github.com/seb-philo/vision-system/blob/main/streaming.py)
+
+The 2 DOF control, with two continuous servos, is mapped to a joystick with an Arduino.
+
+[`motor-control.cpp`](https://github.com/seb-philo/vision-system/blob/main/motor-control.cpp)
